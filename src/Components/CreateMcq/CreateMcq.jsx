@@ -26,10 +26,21 @@ const CreateMcq = () => {
     setMcqData(newQuestion);
     // console.log(mcqData);
   };
+  function addoptions(i){
+    let optionQuestion=[...mcqData];
+    // optionQuestion[i].options.push({option:"option"+(optionQuestion[i].optionValue.length+1)})
+    optionQuestion[i].options.push({option:null})
+    setMcqData(optionQuestion);
+      }
+      const optionsChangeHandler = (text, i, j) => {
+        let optionQuestion = [...mcqData];
+        optionQuestion[i].options[j].option = text;
+        setMcqData(optionQuestion);
+      };
   return (
     <>
       <div className="d-flex align-items-center justify-content-evenly">
-        <h1>MCQ</h1>
+        <h1 className="mt-3">MCQ</h1>
       </div>
       <div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">
         <Button variant="outlined" size="large" onClick={addQuestion}>
@@ -44,6 +55,8 @@ const CreateMcq = () => {
               ques={ques}
               i={i}
               questionHandler={questionHandler}
+              addoptions={addoptions}
+              optionsChangeHandler={optionsChangeHandler}
             />
           </>
         );

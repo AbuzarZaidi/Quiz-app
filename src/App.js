@@ -13,7 +13,6 @@ import McqState from './Context/McqState'
 function App() {
   return (
     <>
-    <h1>hello</h1>
     <McqState>
 <CreateMcq/>
     </McqState>

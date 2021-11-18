@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 const CreateMcqQuestions = (props) => {
-    const {ques,i}=props;
+    const {ques,i,questionHandler}=props;
     return (
         <>
          <div
@@ -32,9 +32,9 @@ const CreateMcqQuestions = (props) => {
                 label="Enter Question"
                 variant="outlined"
                 name="question"
-                // onChange={(e) => {
-                //   questionHandler(e.target.value, i);
-                // }}
+                onChange={(e) => {
+                  questionHandler(e.target.value, i);
+                }}
                  value={ques.question}
               />
            
@@ -65,6 +65,9 @@ const CreateMcqQuestions = (props) => {
                     //  }}
                   />
                 </Box>)})}
+                {/* <Button variant="outlined" size="small" className="my-2"onClick={()=>{addoptions(i)}}>
+          <AddIcon /> Add option
+        </Button> */}
                </div>
         </>
     )

@@ -5,14 +5,16 @@ import Home from './Components/Home'
 import CreateTrueFalse from './Components/CreateTrueFalse/CreateTrueFalse'
 import TakeQuiz from './Components/TakeQuiz/TakeQuiz'
 import SelectQuiz from './Components/TakeQuiz/SelectQuiz'
+import AddDetail from './Components/Detail/AddDetail'
  import TrueFalseState from './Context/TrueFalseState'
  import QuizDetailState from './Context/QuizDetailState'
-import AddDetail from './Components/Detail/AddDetail'
+import mcqState from './Context/McqState'
 function App() {
   return (
     <>
   <TrueFalseState>
   <QuizDetailState>
+    <mcqState>
     <Navbar/>
 
     <Routes>
@@ -22,6 +24,7 @@ function App() {
         <Route path="createQuiz" element={<CreateTrueFalse />} />
         <Route path="takeQuiz" element={<TakeQuiz />} />
       </Routes>
+      </mcqState>
 </QuizDetailState>
       </TrueFalseState>
     </>

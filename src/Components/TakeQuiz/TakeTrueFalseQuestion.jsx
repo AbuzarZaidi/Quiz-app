@@ -5,8 +5,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Divider from '@mui/material/Divider';
-const TakeQuizQuestion = (props) => {
-  const { data, showResult, ind, userAnswerHandler } = props;
+const TakeTrueFalseQuestion = (props) => {
+  const { data, showResult, ind, trueFalseAnswerHandler } = props;
   return (
     <>
      { !showResult&& <div
@@ -38,13 +38,13 @@ const TakeQuizQuestion = (props) => {
               label="True"
               name="userChoose"
               value="true"
-              onClick={(e) => userAnswerHandler(e, ind)}
+              onClick={(e) => trueFalseAnswerHandler(e, ind)}
             />
             <FormControlLabel
               name="userChoose"
               label="False"
               value="false"
-              onClick={(e) => userAnswerHandler(e, ind)}
+              onClick={(e) => trueFalseAnswerHandler(e, ind)}
               control={<Radio size="small" />}
             />
           </RadioGroup>
@@ -56,4 +56,4 @@ const TakeQuizQuestion = (props) => {
   );
 };
 
-export default TakeQuizQuestion;
+export default TakeTrueFalseQuestion;

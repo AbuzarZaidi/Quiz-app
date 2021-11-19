@@ -1,25 +1,35 @@
 import React, { useContext, useState } from "react";
-import TrueFalseContext from "../../Context/TrueFalseContext";
-import TakeQuizQuestions from "./TakeQuizQuestion";
+import QuizDetailContext from '../../Context/QuizDetailContext'
+import TakeTrueFalseQuestion from "./TakeTrueFalseQuestion";
 import { Link } from "react-router-dom";
+import TakeMcqQuestions from "./TakeMcqQuestions";
 
 const TakeQuiz = () => {
     const [result, setResult] = useState(0);
     const [showResult, setShowResult] = useState(false);
-    const context = useContext(TrueFalseContext);
-    const { trueFalseDataArray,setTrueFalseDataArray, quizNumber } = context;
-    
-  const trueFalseData = trueFalseDataArray[quizNumber];
+    // const [quizType,setQuizType]=useState(false);
+    const context = useContext(QuizDetailContext);
+    const { quizArray,setQuizArray, quizNumber } = context;
+  const quizData = quizArray[quizNumber];
+  // const quizType=quizArray[quizNumber][0].type;
+  // console.log(quizType)
+  
+  // if(quizArray[quizNumber][0].type==="tf"){
+  //   setQuizType(true);
+  // }
 
-  const userAnswerHandler = (e, ind) => {
+  const trueFalseAnswerHandler = (e, ind) => {
     const { name, value } = e.target;
-    const list = [...trueFalseDataArray];
+    const list = [...quizArray];
     list[quizNumber][ind][name] = value;
-    setTrueFalseDataArray(list);
+    setQuizArray(list);
   };
-  const calResultHandler = () => {
+  const mcqAnswerHandler=(e,ind)=>{
+
+  }
+  const trueFalseResultHandler = () => {
     let count = 0;
-    trueFalseData.map((data) => {
+    quizData.map((data) => {
       
       if (data.userChoose === data.ansVal) {
         count++
@@ -29,17 +39,20 @@ const TakeQuiz = () => {
     setResult(count);
     setTimeout(() => {
       setShowResult(true);
-      ResetUserChoose();
+      ResetTrueFalseChoices();
     }, 300);
   };
-  const ResetUserChoose = () => {
-    let trueFalseVal = trueFalseDataArray[quizNumber];
-    trueFalseVal.map((ele) => {
+  const ResetTrueFalseChoices = () => {
+    let quizVal = quizArray[quizNumber];
+    quizVal.map((ele) => {
      return( ele.userChoose = null)
     });
-    trueFalseDataArray[quizNumber] = trueFalseVal;
-    setTrueFalseDataArray(trueFalseDataArray);
+    quizArray[quizNumber] = quizVal;
+    setQuizArray(quizArray);
   };
+  const ResetMcqChoices=()=>{
+
+  }
     return (
         <>
         <div className="text-center">
@@ -47,23 +60,42 @@ const TakeQuiz = () => {
           <br />
           {showResult && (
             <h4>
-              You got {result} out of {trueFalseData.length}
+              You got {result} out of {quizData.length}
             </h4>
           )}
         </div>
-        {trueFalseData.map((data, ind) => {
+        {quizData.map((data, ind) => {
           return (
-            <TakeQuizQuestions
+            // <TakeTrueFalseQuestion
+            // key={ind}
+            //   data={data}
+            //   showResult={showResult}
+            //   ind={ind}
+            //   trueFalseAnswerHandler={trueFalseAnswerHandler}
+            // />
+            <TakeMcqQuestions
+              key={ind}
+              data={data}
+              showResult={showResult}
+              ind={ind}
+              mcqAnswerHandler={mcqAnswerHandler}
+            />
+          );
+        })}
+        {/* {!quizType&&quizData.map((data, ind) => {
+          return (
+            <TakeMcqQuestions
             key={ind}
               data={data}
               showResult={showResult}
               ind={ind}
-              userAnswerHandler={userAnswerHandler}
+              trueFalseAnswerHandler={trueFalseAnswerHandler}
             />
+            
           );
-        })}
+        })} */}
         { showResult===false?<div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">
-          <button className="btn btn-success btn-lg" onClick={calResultHandler}>
+          <button className="btn btn-success btn-lg" onClick={trueFalseResultHandler}>
             Show Result
           </button>
         </div>:<div className="d-flex align-items-center justify-content-evenly mt-2 mb-2"><Link to='/' className="btn btn-success btn-lg ">Back</Link></div>}

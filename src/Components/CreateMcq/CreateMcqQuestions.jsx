@@ -55,7 +55,7 @@ const CreateMcqQuestions = (props) => {
             >
               <TextField
                 id="outlined-basic"
-                label="Enter Option"
+                label={`option ${j+1}`}
                 variant="outlined"
                  name="question"
                 value={ques.options[j].option}

@@ -23,25 +23,26 @@ const TakeMcqQuestions = (props) => {
 
         {data.options.map((op, j) => {
           return (
-            <Box
-              key={j}
-              justifyContent="center"
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "75%" },
-              }}
-              noValidate
-              autoComplete="off"
-              className="d-flex align-items-center"
-            >
-              <TextField
-                id="outlined-basic"
-                label={`option ${j + 1} `}
-                variant="outlined"
-                name="question"
-                value={data.options[j].option}
-              />
-            </Box>
+            <div class="mb-3 row d-flex justify-content-center">
+              <div className="form-check col-sm-6  ">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="option"
+                  id="flexRadioDefault2"
+                />
+                <input
+                  type="email"
+                  placeholder="Enter Option"
+                  className="form-control "
+                  name="option"
+                  value={data.options[j].option}
+                  disabled
+                />
+              </div>
+            </div>
+           
+            
           );
         })}
       </div>

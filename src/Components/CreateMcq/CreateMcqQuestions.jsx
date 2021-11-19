@@ -1,10 +1,9 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
+
 const CreateMcqQuestions = (props) => {
-  const { ques, i, questionHandler, addoptions,optionsChangeHandler } = props;
+  const { ques, i, questionHandler, addoptions, optionsChangeHandler } = props;
   return (
     <>
       <div
@@ -13,80 +12,63 @@ const CreateMcqQuestions = (props) => {
           padding: "20px",
           marginTop: "15px",
         }}
+        className=""
       >
-        <Box
-          justifyContent="center"
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "75%" },
-          }}
-          noValidate
-          autoComplete="off"
-          className="d-flex align-items-center"
-        >
-          {/* {`${ind + 1})`}{" "} */}
 
+        <div class="mb-3 row d-flex justify-content-center">
           {`${i + 1})`}
-
-          <TextField
-            id="outlined-basic"
-            label="Enter Question"
-            variant="outlined"
-            name="question"
-            onChange={(e) => {
-              questionHandler(e.target.value, i);
-            }}
-            value={ques.question}
-          />
-        </Box>
+          <div className="col-sm-6 ">
+            <input
+              type="text"
+              placeholder="Enter Your Question"
+              className="form-control"
+              id="inputPassword"
+              name="question"
+              value={ques.question}
+              onChange={(e) => {
+                questionHandler(e.target.value, i);
+              }}
+            />
+          </div>
+        </div>
 
         {ques.options.map((op, j) => {
           return (
-            <Box
-              key={j}
-              justifyContent="center"
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "75%" },
-              }}
-              noValidate
-              autoComplete="off"
-              className="d-flex align-items-center"
-            >
-              <TextField
-                id="outlined-basic"
-                label={`option ${j+1}`}
-                variant="outlined"
-                 name="question"
-                value={ques.options[j].option}
-                onChange={(e) => {
-                  optionsChangeHandler(e.target.value, i, j);
-                 }}
-              />
-            </Box>
+            <div class="mb-3 row d-flex justify-content-center">
+              <div className="form-check col-sm-6  ">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="option"
+                  id="flexRadioDefault2"
+                />
+                <input
+                  type="email"
+                  placeholder="Enter Option"
+                  className="form-control "
+                  name="question"
+                  value={ques.options[j].option}
+                  onChange={(e) => {
+                    optionsChangeHandler(e.target.value, i, j);
+                  }}
+                />
+              </div>
+            </div>
           );
         })}
-        <Box
-          justifyContent="center"
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "75%" },
-          }}
-          noValidate
-          autoComplete="off"
-          className="d-flex align-items-center"
-        >
+
+        <div class="mb-3 row d-flex justify-content-center">
           <Button
             variant="outlined"
             size="small"
-            className="my-auto"
+            className="my-auto col-sm-4"
             onClick={() => {
               addoptions(i);
             }}
           >
             <AddIcon /> Add option
           </Button>
-        </Box>
+        </div>
       </div>
     </>
   );

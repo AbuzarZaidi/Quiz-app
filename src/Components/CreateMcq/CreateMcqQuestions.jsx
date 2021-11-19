@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 
 const CreateMcqQuestions = (props) => {
-  const { ques, i, questionHandler, addoptions, optionsChangeHandler } = props;
+  const { ques, i, questionHandler, addoptions, optionsChangeHandler,correctOptionHandler } = props;
   return (
     <>
       <div
@@ -41,6 +41,8 @@ const CreateMcqQuestions = (props) => {
                   type="radio"
                   name="option"
                   id="flexRadioDefault2"
+                  value={j}
+                  onClick={(e)=>correctOptionHandler(e.target.value,i,j)}
                 />
                 <input
                   type="email"

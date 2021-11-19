@@ -47,6 +47,14 @@ const CreateMcq = () => {
         setMcqData([ { question: "", ansVal: null,userChoose: null },]);
        }, 500);
       }
+      const correctOptionHandler=(e,i,j)=>{
+        let array=[...mcqData];
+        array[i].correctOpt=e+1;
+        setMcqData(array);
+// console.log(e)
+// console.log(i)
+// console.log(j)
+      }
   return (
     <>
       <div className="d-flex align-items-center justify-content-evenly">
@@ -67,6 +75,7 @@ const CreateMcq = () => {
               questionHandler={questionHandler}
               addoptions={addoptions}
               optionsChangeHandler={optionsChangeHandler}
+              correctOptionHandler={correctOptionHandler}
             />
           </>
         );

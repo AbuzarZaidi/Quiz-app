@@ -10,7 +10,7 @@ const AddDetail = () => {
     const[quizDetail,setQuizDetail]=useState({title:"",description:"",creator:"" });
     const context = useContext(QuizDetailContext);
     const { quizesDetail,setquizesDetail } = context;
-  
+  const[quizType,setQuizType]=useState(null);
    const fillDetailHandler=(e)=>{
        const { name, value } = e.target;
    // const list = [...quizDetail];
@@ -26,6 +26,9 @@ const AddDetail = () => {
        //   console.log(quizesDetail)
        // }, 8000);
    }
+   const quizTypeHandler=(e)=>{
+ setQuizType(e.target.value);
+   }
    return (
        <>
         <div className="d-flex align-items-center justify-content-evenly">
@@ -34,7 +37,22 @@ const AddDetail = () => {
      <br/>
      <hr/>
      <br/> 
-     {/* title */}
+  
+     <div className="d-flex align-items-center justify-content-evenly mb-3">
+       <div className="form-check">
+  <input className="form-check-input" type="radio" name="quizType" value="createMcq" id="createMcq" onClick={quizTypeHandler}/>
+  <label className="form-check-label" for="flexRadioDefault1">
+    Mcq
+  </label>
+</div>
+<div className="form-check">
+  <input className="form-check-input" type="radio" name="quizType" value="createTrueFalse" id="createTrueFalse"  onClick={quizTypeHandler} / >
+  <label className="form-check-label" for="flexRadioDefault2">
+   True/False
+  </label>
+</div>
+</div>
+   {/* title */}
      <Box
          justifyContent="center"
          component="form"
@@ -98,8 +116,10 @@ const AddDetail = () => {
           onChange={fillDetailHandler}
          />
        </Box>
+   
+
        <div className="d-flex align-items-center justify-content-evenly mb-3">
-       <Link to='/createQuiz' className="btn btn-success btn-lg" onClick={addDetailHandler}>Next</Link>
+       <Link to={`/${quizType}`} className="btn btn-success btn-lg" onClick={addDetailHandler}>Next</Link>
         </div>
       
        </>

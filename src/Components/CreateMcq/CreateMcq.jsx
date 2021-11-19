@@ -4,17 +4,21 @@ import React, { useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 import McqContext from "../../Context/McqContext";
+import QuizDetailContext from '../../Context/QuizDetailContext'
 import CreateMcqQuestions from "./CreateMcqQuestions";
-
+import { Link } from "react-router-dom";
 const CreateMcq = () => {
   const context = useContext(McqContext);
-  const { mcqData, setMcqData } = context;
+  const { mcqData, setMcqData, } = context;
+  const {quizArray,setquizArray}=useContext( QuizDetailContext)
   const addQuestion = () => {
     setMcqData([
       ...mcqData,
       {
         question: null,
         correctOpt: null,
+        userChoice:null,
+        type:"mcq",
         options: [{ option: null }],
       },
     ]);
@@ -37,6 +41,12 @@ const CreateMcq = () => {
         optionQuestion[i].options[j].option = text;
         setMcqData(optionQuestion);
       };
+      const taskCompletedHandler=()=>{
+        setquizArray ([...quizArray,mcqData]);
+       setTimeout(() => {
+        setMcqData([ { question: "", ansVal: null,userChoose: null },]);
+       }, 500);
+      }
   return (
     <>
       <div className="d-flex align-items-center justify-content-evenly">
@@ -61,6 +71,12 @@ const CreateMcq = () => {
           </>
         );
       })}
+      <div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">
+        <Link to="/" className="btn btn-success btn-lg" onClick={taskCompletedHandler}>
+          Done
+        </Link>
+        {/* <button className="btn btn-success btn-lg" onClick={taskCompleteHandler}>Done</button>*/}
+      </div> 
     </>
   );
 };

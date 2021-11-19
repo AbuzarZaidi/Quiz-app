@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import TrueFalseContext from "../../Context/TrueFalseContext"
+import QuizDetailContext from '../../Context/QuizDetailContext'
 import CreateTrueFalseQuestions from "./CreateTrueFalseQuestions";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
@@ -7,7 +8,8 @@ import Button from "@mui/material/Button";
 
 const CreateTrueFalse = () => {
   const context = useContext(TrueFalseContext);
-  const { trueFalseData, setTrueFalseData,trueFalseDataArray,setTrueFalseDataArray } = context;
+  const { trueFalseData, setTrueFalseData,} = context;
+  const {quizArray,setquizArray }=useContext(QuizDetailContext);
   const questionHandler = (e, ind) => {
     const { name, value } = e.target;
     const list = [...trueFalseData];
@@ -17,11 +19,11 @@ const CreateTrueFalse = () => {
   const handleAddClick = () => {
     setTrueFalseData([
       ...trueFalseData,
-      { question: "", ansVal: null, userChoose: null },
+      { question: "", type:"tf",ansVal: null, userChoose: null },
     ]);
   };
   const taskCompleteHandler=()=>{
-    setTrueFalseDataArray([...trueFalseDataArray,trueFalseData]);
+    setquizArray([...quizArray,trueFalseData]);
    setTimeout(() => {
     setTrueFalseData([ { question: "", ansVal: null,userChoose: null },]);
    }, 500);

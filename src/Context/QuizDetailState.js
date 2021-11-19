@@ -2,10 +2,12 @@ import React ,{useState} from 'react'
 import QuizDetailContext from './QuizDetailContext'
 const QuizDetailState = (props) => {
     const[quizesDetail,setquizesDetail]=useState([]);
+    const[quizNumber,setQuizNumber]=useState(null);
+    const[quizArray,setquizArray]=useState([])
     return (
-       <QuizDetailContext.Provider value={{quizesDetail,setquizesDetail}}>
+       <QuizDetailContext.Provider value={{quizesDetail,setquizesDetail,quizNumber,setQuizNumber,quizArray,setquizArray,}}>
            {props.children}
-       </QuizDetailContext.Provider> 
+       </QuizDetailContext.Provider>
     )
 }
 

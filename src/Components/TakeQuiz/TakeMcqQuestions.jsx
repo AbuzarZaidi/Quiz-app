@@ -4,10 +4,11 @@ import React from "react";
 // import AddIcon from "@mui/icons-material/Add";
 // import Button from "@mui/material/Button";
 const TakeMcqQuestions = (props) => {
-  const { data, ShowResult, ind, mcqAnswerHandler } = props;
+  const { data, showResult, ind, mcqAnswerHandler } = props;
   return (
     <>
-      <div
+    {!showResult &&
+     <div
         style={{
           backgroundColor: "#Dfffff",
           padding: "20px",
@@ -48,6 +49,7 @@ const TakeMcqQuestions = (props) => {
           );
         })}
       </div>
+}
     </>
   );
 };

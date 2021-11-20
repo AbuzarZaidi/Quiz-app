@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import QuizDetailContext from "../../Context/QuizDetailContext";
 import TakeTrueFalseQuestion from "./TakeTrueFalseQuestion";
 import { Link } from "react-router-dom";
@@ -6,9 +6,8 @@ import TakeMcqQuestions from "./TakeMcqQuestions";
 
 const TakeQuiz = () => {
   const [result, setResult] = useState(0);
-  const [count, setCount] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [quizType, setQuizType] = useState("t");
+  const [quizType, setQuizType] = useState("tf");
   const context = useContext(QuizDetailContext);
   const { quizArray, setQuizArray, quizNumber } = context;
   const quizData = quizArray[quizNumber];
@@ -17,9 +16,14 @@ const TakeQuiz = () => {
   // const quizType=quizArray[quizNumber][0].type;
   // console.log(quizType)
 
-  // if(quizArray[quizNumber][0].type==="tf"){
+  // if(){
   //   setQuizType(true);
   // }
+  useEffect(() => {
+    if (quizArray[quizNumber][0].type !== "tf") {
+      setQuizType("0");
+    }
+  }, []);
 
   const trueFalseAnswerHandler = (e, ind) => {
     const { name, value } = e.target;
@@ -61,10 +65,8 @@ const TakeQuiz = () => {
   const mcqResultHandler = () => {
     let count = 0;
     quizData.map((data) => {
-     
       if (data.userChoice === data.correctOpt) {
         count++;
-       
       }
       return 0;
     });
@@ -87,8 +89,8 @@ const TakeQuiz = () => {
   return (
     <>
       <div className="text-center">
-        {quizType=== "tf" ? <h2>True False Section</h2> : <h2>MCQ Section</h2>}
-        {showResult === true ? <h2>Result</h2>:""}
+        {quizType === "tf" ? <h2>True False Section</h2> : <h2>MCQ Section</h2>}
+        {showResult === true ? <h2>Result</h2> : ""}
         <br />
         {showResult && (
           <h4>

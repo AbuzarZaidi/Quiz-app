@@ -63,7 +63,8 @@ const TakeQuiz = () => {
   const mcqResultHandler = () => {
     let count = 0;
     quizData.map((data) => {
-      if (data.userChoice === data.correctOpt) {
+      if (data.userChoice == data.correctOpt) {
+        
         count++;
       }
       return 0;
@@ -122,14 +123,20 @@ const TakeQuiz = () => {
 
       {showResult === false ? (
         <div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">
-          <button
+           <button
+            className="btn btn-success btn-lg"
+            onClick={ mcqResultHandler}
+          >
+            Show Result
+          </button>
+          {/* <button
             className="btn btn-success btn-lg"
             onClick={
               quizType === "tf" ? trueFalseResultHandler : mcqResultHandler
             }
           >
             Show Result
-          </button>
+          </button> */}
         </div>
       ) : (
         <div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">

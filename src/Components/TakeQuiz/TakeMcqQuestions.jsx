@@ -1,10 +1,10 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import AddIcon from "@mui/icons-material/Add";
-import Button from "@mui/material/Button";
+// import Box from "@mui/material/Box";
+// import TextField from "@mui/material/TextField";
+// import AddIcon from "@mui/icons-material/Add";
+// import Button from "@mui/material/Button";
 const TakeMcqQuestions = (props) => {
-  const { data, showResult, ind, mcqAnswerHandler } = props;
+  const { data, ShowResult, ind, mcqAnswerHandler } = props;
   return (
     <>
       <div
@@ -28,8 +28,10 @@ const TakeMcqQuestions = (props) => {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="option"
+                  name="userChoice"
                   id="flexRadioDefault2"
+                  // onClick={()=>mcqAnswerHandler(ind,j) }
+                  onClick={(e) => mcqAnswerHandler (e, ind,j)}
                 />
                 <input
                   type="email"

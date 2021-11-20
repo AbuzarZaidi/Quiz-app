@@ -24,9 +24,6 @@ const TakeQuiz = () => {
     list[quizNumber][ind][name] = value;
     setQuizArray(list);
   };
-  const mcqAnswerHandler=(e,ind)=>{
-
-  }
   const trueFalseResultHandler = () => {
     let count = 0;
     quizData.map((data) => {
@@ -34,7 +31,7 @@ const TakeQuiz = () => {
       if (data.userChoose === data.ansVal) {
         count++
       }
-      return 0;
+       return 0;
     });
     setResult(count);
     setTimeout(() => {
@@ -50,8 +47,21 @@ const TakeQuiz = () => {
     quizArray[quizNumber] = quizVal;
     setQuizArray(quizArray);
   };
-  const ResetMcqChoices=()=>{
+  const mcqAnswerHandler=(e,ind,j)=>{
+    const { name } = e.target;
+    const list = [...quizArray];
+    list[quizNumber][ind][name] = j;
+    setQuizArray(list);
+ setTimeout(() => {
+   console.log(quizArray)
+ },1000);
+  }
+ const mcqResultHandler=()=>{
+  console.log("hello")
+ }
 
+  const ResetMcqChoices=()=>{
+console.log("hello")
   }
     return (
         <>
@@ -66,6 +76,7 @@ const TakeQuiz = () => {
         </div>
         {quizData.map((data, ind) => {
           return (
+            //-----------------working Fine---------------
             // <TakeTrueFalseQuestion
             // key={ind}
             //   data={data}
@@ -73,10 +84,11 @@ const TakeQuiz = () => {
             //   ind={ind}
             //   trueFalseAnswerHandler={trueFalseAnswerHandler}
             // />
+
             <TakeMcqQuestions
               key={ind}
               data={data}
-              showResult={showResult}
+             showResult={showResult}
               ind={ind}
               mcqAnswerHandler={mcqAnswerHandler}
             />

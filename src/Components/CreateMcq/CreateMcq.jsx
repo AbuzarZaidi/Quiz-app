@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const CreateMcq = () => {
   const context = useContext(McqContext);
   const { mcqData, setMcqData, } = context;
-  const {quizArray,setquizArray}=useContext( QuizDetailContext)
+  const {quizArray,setQuizArray}=useContext( QuizDetailContext)
   const addQuestion = () => {
     setMcqData([
       ...mcqData,
@@ -42,14 +42,14 @@ const CreateMcq = () => {
         setMcqData(optionQuestion);
       };
       const taskCompletedHandler=()=>{
-        setquizArray ([...quizArray,mcqData]);
+        setQuizArray ([...quizArray,mcqData]);
        setTimeout(() => {
         setMcqData([ { question: "", ansVal: null,userChoose: null },]);
        }, 500);
       }
       const correctOptionHandler=(e,i,j)=>{
         let array=[...mcqData];
-        array[i].correctOpt=e+1;
+        array[i].correctOpt=e;
         setMcqData(array);
 // console.log(e)
 // console.log(i)

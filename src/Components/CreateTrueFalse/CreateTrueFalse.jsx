@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 const CreateTrueFalse = () => {
   const context = useContext(TrueFalseContext);
   const { trueFalseData, setTrueFalseData,} = context;
-  const {quizArray,setquizArray }=useContext(QuizDetailContext);
+  const {quizArray,setQuizArray }=useContext(QuizDetailContext);
   const questionHandler = (e, ind) => {
     const { name, value } = e.target;
     const list = [...trueFalseData];
@@ -23,7 +23,7 @@ const CreateTrueFalse = () => {
     ]);
   };
   const taskCompleteHandler=()=>{
-    setquizArray([...quizArray,trueFalseData]);
+    setQuizArray([...quizArray,trueFalseData]);
    setTimeout(() => {
     setTrueFalseData([ { question: "", ansVal: null,userChoose: null },]);
    }, 500);

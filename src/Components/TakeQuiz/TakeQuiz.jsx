@@ -57,11 +57,31 @@ const TakeQuiz = () => {
  },1000);
   }
  const mcqResultHandler=()=>{
-  console.log("hello")
+  let count = 0;
+  quizData.map((data) => {
+    console.log(data.userChoice)
+    console.log(data.correctOpt)
+    if(data.userChoice==data.correctOpt)
+    {
+      count++;
+      console.log(count)
+    }
+  });
+ 
+  setTimeout(() => {
+    setResult(count);
+    setShowResult(true);
+    ResetMcqChoices();
+  }, 300);
  }
 
   const ResetMcqChoices=()=>{
-console.log("hello")
+    let quizVal = quizArray[quizNumber];
+    quizVal.map((ele) => {
+     return( ele.userChoise = null)
+    });
+    quizArray[quizNumber] = quizVal;
+    setQuizArray(quizArray);
   }
     return (
         <>
@@ -77,21 +97,21 @@ console.log("hello")
         {quizData.map((data, ind) => {
           return (
             //-----------------working Fine---------------
-            // <TakeTrueFalseQuestion
-            // key={ind}
-            //   data={data}
-            //   showResult={showResult}
-            //   ind={ind}
-            //   trueFalseAnswerHandler={trueFalseAnswerHandler}
-            // />
-
-            <TakeMcqQuestions
-              key={ind}
+            <TakeTrueFalseQuestion
+            key={ind}
               data={data}
-             showResult={showResult}
+              showResult={showResult}
               ind={ind}
-              mcqAnswerHandler={mcqAnswerHandler}
+              trueFalseAnswerHandler={trueFalseAnswerHandler}
             />
+
+            // // <TakeMcqQuestions
+            //   key={ind}
+            //   data={data}
+            //  showResult={showResult}
+            //   ind={ind}
+            //   mcqAnswerHandler={mcqAnswerHandler}
+            // />
           );
         })}
         {/* {!quizType&&quizData.map((data, ind) => {
@@ -107,6 +127,9 @@ console.log("hello")
           );
         })} */}
         { showResult===false?<div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">
+          {/* <button className="btn btn-success btn-lg" onClick={mcqResultHandler}>
+            Show Result
+          </button> */}
           <button className="btn btn-success btn-lg" onClick={trueFalseResultHandler}>
             Show Result
           </button>

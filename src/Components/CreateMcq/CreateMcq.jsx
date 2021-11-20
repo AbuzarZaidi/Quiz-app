@@ -4,21 +4,21 @@ import React, { useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 import McqContext from "../../Context/McqContext";
-import QuizDetailContext from '../../Context/QuizDetailContext'
+import QuizDetailContext from "../../Context/QuizDetailContext";
 import CreateMcqQuestions from "./CreateMcqQuestions";
 import { Link } from "react-router-dom";
 const CreateMcq = () => {
   const context = useContext(McqContext);
-  const { mcqData, setMcqData, } = context;
-  const {quizArray,setQuizArray}=useContext( QuizDetailContext)
+  const { mcqData, setMcqData } = context;
+  const { quizArray, setQuizArray } = useContext(QuizDetailContext);
   const addQuestion = () => {
     setMcqData([
       ...mcqData,
       {
         question: null,
         correctOpt: null,
-        userChoice:null,
-        type:"mcq",
+        userChoice: null,
+        type: "mcq",
         options: [{ option: null }],
       },
     ]);
@@ -30,31 +30,39 @@ const CreateMcq = () => {
     setMcqData(newQuestion);
     // console.log(mcqData);
   };
-  function addoptions(i){
-    let optionQuestion=[...mcqData];
+  function addoptions(i) {
+    let optionQuestion = [...mcqData];
     // optionQuestion[i].options.push({option:"option"+(optionQuestion[i].optionValue.length+1)})
-    optionQuestion[i].options.push({option:null})
+    optionQuestion[i].options.push({ option: null });
     setMcqData(optionQuestion);
-      }
-      const optionsChangeHandler = (text, i, j) => {
-        let optionQuestion = [...mcqData];
-        optionQuestion[i].options[j].option = text;
-        setMcqData(optionQuestion);
-      };
-      const taskCompletedHandler=()=>{
-        setQuizArray ([...quizArray,mcqData]);
-       setTimeout(() => {
-        setMcqData([ { question: "", ansVal: null,userChoose: null },]);
-       }, 500);
-      }
-      const correctOptionHandler=(e,i,j)=>{
-        let array=[...mcqData];
-        array[i].correctOpt=e;
-        setMcqData(array);
-// console.log(e)
-// console.log(i)
-// console.log(j)
-      }
+  }
+  const optionsChangeHandler = (text, i, j) => {
+    let optionQuestion = [...mcqData];
+    optionQuestion[i].options[j].option = text;
+    setMcqData(optionQuestion);
+  };
+  const taskCompletedHandler = () => {
+    setQuizArray([...quizArray, mcqData]);
+    setTimeout(() => {
+      setMcqData([
+        {
+          question: null,
+          correctOpt: null,
+          userChoice: null,
+          type: "mcq",
+          options: [{ option: null }],
+        },
+      ]);
+    }, 500);
+  };
+  const correctOptionHandler = (e, i, j) => {
+    let array = [...mcqData];
+    array[i].correctOpt = e;
+    setMcqData(array);
+    // console.log(e)
+    // console.log(i)
+    // console.log(j)
+  };
   return (
     <>
       <div className="d-flex align-items-center justify-content-evenly">
@@ -81,11 +89,15 @@ const CreateMcq = () => {
         );
       })}
       <div className="d-flex align-items-center justify-content-evenly mt-2 mb-2">
-        <Link to="/" className="btn btn-success btn-lg" onClick={taskCompletedHandler}>
+        <Link
+          to="/"
+          className="btn btn-success btn-lg"
+          onClick={taskCompletedHandler}
+        >
           Done
         </Link>
         {/* <button className="btn btn-success btn-lg" onClick={taskCompleteHandler}>Done</button>*/}
-      </div> 
+      </div>
     </>
   );
 };

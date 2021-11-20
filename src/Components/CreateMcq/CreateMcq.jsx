@@ -22,17 +22,15 @@ const CreateMcq = () => {
         options: [{ option: null }],
       },
     ]);
-    console.log(mcqData);
   };
   const questionHandler = (text, i) => {
     let newQuestion = [...mcqData];
     newQuestion[i].question = text;
     setMcqData(newQuestion);
-    // console.log(mcqData);
   };
   function addoptions(i) {
     let optionQuestion = [...mcqData];
-    // optionQuestion[i].options.push({option:"option"+(optionQuestion[i].optionValue.length+1)})
+
     optionQuestion[i].options.push({ option: null });
     setMcqData(optionQuestion);
   }
@@ -59,9 +57,6 @@ const CreateMcq = () => {
     let array = [...mcqData];
     array[i].correctOpt = e;
     setMcqData(array);
-    // console.log(e)
-    // console.log(i)
-    // console.log(j)
   };
   return (
     <>

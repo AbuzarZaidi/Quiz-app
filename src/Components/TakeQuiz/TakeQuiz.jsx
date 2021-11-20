@@ -58,9 +58,7 @@ const TakeQuiz = () => {
     const list = [...quizArray];
     list[quizNumber][ind][name] = j;
     setQuizArray(list);
-    setTimeout(() => {
-      //  console.log(quizArray)
-    }, 1000);
+    setTimeout(() => {}, 1000);
   };
   const mcqResultHandler = () => {
     let count = 0;
